@@ -23,9 +23,8 @@ public:
             x /= 10;
             if (x != 0)
                 reversed_input *= 10;
-
         }
-        
+		
         // Add the sign back in
         if (x < 0)
             reversed_input *= -1;
