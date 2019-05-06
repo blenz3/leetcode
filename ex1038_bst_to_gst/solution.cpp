@@ -11,42 +11,25 @@ class Solution {
 public:
     TreeNode* bstToGst(TreeNode* root) 
     {
-        auto bst = root;
-        auto gst = copyTree(root);
-        traverseForGstValues(gst, bst);
+        if (root == nullptr)
+            return nullptr;
         
-        return gst;
+        int count(0);
+        in_order_traverse(root, count);
+        return root;
     }
     
-    void traverseForGstValues(TreeNode* gst, TreeNode* bst_root)
+    void in_order_traverse(TreeNode* bst, int& current_count)
     {
-        if (gst == nullptr)
+        if (bst == nullptr)
         {
             return;
         }
         
-        gst->val = sumGreater(bst_root, gst->val);
-        traverseForGstValues(gst->left, bst_root);
-        traverseForGstValues(gst->right, bst_root);
-    }
-    
-    TreeNode* copyTree(TreeNode* root)
-    {
-        if (root == nullptr)
-            return root;
+        in_order_traverse(bst->right, current_count);
+        current_count += bst->val;
+        bst->val = current_count;
         
-        auto node = new TreeNode(root->val);
-        node->left = copyTree(root->left);
-        node->right = copyTree(root->right);
-        
-        return node;
-    }
-    
-    int sumGreater(TreeNode* root, int minimum_value)
-    {
-        if (root == nullptr)
-            return 0;
-        
-        return ((root->val >= minimum_value) ? root->val : 0) + sumGreater(root->left, minimum_value) + sumGreater(root->right, minimum_value);
+        in_order_traverse(bst->left, current_count);
     }
 };
