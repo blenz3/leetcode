@@ -1,5 +1,34 @@
 class Solution {
 public:
+    // Optimized (linear time, linear space)
+    int lengthOfLongestSubstring(string s) {
+        
+        std::set<char> observed_characters;    
+        int longest_substring(0);
+        
+        int left(0), right(0);
+        
+        while (left <= right && right < s.length())
+        {
+            auto find_it = observed_characters.find(s[right]);
+            if (find_it == observed_characters.end())
+            {
+                observed_characters.insert(s[right++]);
+            }
+            else
+            {
+                // we've seen this before
+                observed_characters.erase(s[left++]);
+            }
+            
+            longest_substring = std::max(longest_substring, right - left);
+        }
+        
+        return longest_substring;
+        
+    }
+#if 0
+    // Brute force (quadratic time, linear space)
     int lengthOfLongestSubstring(string s) {
         
         std::set<char> observed_characters;    
@@ -31,6 +60,6 @@ public:
         }
         
         return longest_substring;
-        
     }
+#endif
 };
