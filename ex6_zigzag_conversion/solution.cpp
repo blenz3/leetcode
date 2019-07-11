@@ -73,13 +73,13 @@ public:
 			{
 				moving_down = !moving_down;
 				matrix_row = 1;
-                matrix_col--;
+				matrix_col--;
 			}
 			else if (matrix_row >= numRows)
 			{
 				moving_down = !moving_down;
 				matrix_row = numRows - 2;
-                matrix_col++;
+				matrix_col++;
 			}
 		}
 		//print_matrix(zigzags);
