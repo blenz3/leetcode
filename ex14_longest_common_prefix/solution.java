@@ -5,21 +5,20 @@ class Solution {
             return "";
         
         int end_index = 0;
-        boolean continue_checking = true;
-        for (int i = 0; i < strs[0].length() && continue_checking; ++i) 
+        
+        search:
+        for (int i = 0; i < strs[0].length(); ++i) 
         {
             char c = strs[0].charAt(i);
             for (String s : strs)
             {
                 if (s.length() <= end_index || s.charAt(end_index) != c)
                 {
-                    continue_checking = false;
-                    break;
+                    break search;
                 }   
             }
             
-            if (continue_checking)
-                ++end_index;
+            ++end_index;
         }
         
         return strs[0].substring(0, end_index);
