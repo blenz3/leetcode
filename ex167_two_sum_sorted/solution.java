@@ -8,8 +8,7 @@ class Solution {
             int localSum = numbers[lowerIndex] + numbers[upperIndex];
             if (localSum == target)
             {
-                int[] out = { lowerIndex + 1, upperIndex + 1};
-                return out;
+                return new int[] { lowerIndex + 1, upperIndex + 1};
             }
             else if (localSum > target)
             {
@@ -22,7 +21,7 @@ class Solution {
         }
         
         
-        return new int[0];
+        return new int[] { -1, -1 };
         
     }
 }
