@@ -23,15 +23,13 @@ private:
     int binaryBadVersionSearch(int64_t lower, int64_t upper) {
         if (lower == upper) {
             return lower;
-        } else if (upper - lower == 1) {
-            return (isBadVersion(lower)) ? lower : upper;
         }
         
         int64_t midpoint = (upper + lower) / 2;
         if (isBadVersion(midpoint)) {
             return binaryBadVersionSearch(lower, midpoint);
         } else {
-            return binaryBadVersionSearch(midpoint, upper);
+            return binaryBadVersionSearch(midpoint + 1, upper);
         }
     }
 };
