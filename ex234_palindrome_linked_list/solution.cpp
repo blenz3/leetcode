@@ -8,6 +8,36 @@
  */
 class Solution {
 public:
+    // Use constant space by reversing the second half of the linked list.
+    // Mutates the input data though which isn't ideal.
+    bool isPalindrome(ListNode* head) {
+        size_t length = getListLength(head);
+        
+        ListNode* runner = head;
+        for (size_t i = 0; i < length / 2; ++i) {
+            runner = runner->next;
+        }
+        
+        if (length % 2 != 0) {
+            runner = runner->next;
+        }
+        
+        runner = reverseList(runner);
+        
+        while (head != nullptr && runner != nullptr) {
+            if (head->val != runner->val) {
+                return false;
+            }
+            
+            head = head->next;
+            runner = runner->next;
+        }
+        
+        return true;
+    }
+    
+#if 0
+    // Uses a O(n) space due to a stack
     bool isPalindrome(ListNode* head) {
         // Insert first length / 2 elements into a stack
         size_t length = getListLength(head);
@@ -36,6 +66,7 @@ public:
         
         return true;
     }
+#endif
     
 private:
     size_t getListLength(ListNode* head) {
@@ -46,5 +77,23 @@ private:
         }
         
         return length;
+    }
+    
+    ListNode* reverseList(ListNode* head) {
+        ListNode* newList = nullptr;
+        while (head != nullptr) {
+            if (newList == nullptr) {
+                newList = head;
+                head = head->next;
+                newList->next = nullptr;
+            } else {
+                ListNode* tmp = head->next;
+                head->next = newList;
+                newList = head;
+                head = tmp;
+            }
+        }
+        
+        return newList;
     }
 };
