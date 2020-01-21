@@ -4,9 +4,9 @@ public:
     // Binary search for the minimum value
     int findMin(vector<int>& nums) {
         int left = 0, right = nums.size() - 1;
-        while (left <= right) {
+        while (left < right) {
             int mid = (left + right)  / 2;
-            if (left == right || left + 1 == right) {
+            if (left + 1 == right) {
                 break;
             }
             
