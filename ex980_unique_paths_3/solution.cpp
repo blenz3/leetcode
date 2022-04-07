@@ -1,15 +1,3 @@
-struct GridNode {
-    int x;
-    int y;
-    int length;
-    
-    GridNode() : GridNode(0, 0, 0) {}
-    
-    GridNode(int x_, int y_, int len) : x(x_), y(y_), length(len) { 
-    
-    }
-};
-
 static const int START_TILE = 1;
 static const int END_TILE = 2;
 static const int WALKABLE = 0;
