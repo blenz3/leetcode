@@ -16,7 +16,7 @@ public:
             matrix.push_back(vector<int>(n, -1));
         }
         
-        Direction direction = Direction::UP;
+        Direction direction = Direction::RIGHT;
         int row = 0, col = 0;
         int i = 1;
         while (i - 1 < n * n) {
